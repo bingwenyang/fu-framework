@@ -1,0 +1,23 @@
+
+spring:  
+  profiles:  
+    active: dev
+  jackson:
+    default-property-inclusion: non_null
+  application:
+    name: zk-client-demo
+  #curator客户端配置
+  curator:
+    retryCount: 5  #重试次数
+    elapsedTimeMs: 5000   #重试间隔时间
+    connectString: zk01.test:2181,zk02.test.test:2181,zk03.test.test:2181  #zookeeper 集群
+    sessionTimeoutMs: 60000  # session超时时间
+    connectionTimeoutMs: 5000  # 连接超时时间
+
+server:
+  port: 8182 # 监听端口
+
+  
+  
+  
+  

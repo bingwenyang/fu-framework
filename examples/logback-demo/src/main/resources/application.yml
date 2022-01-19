@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: logback-demo
+  profiles:
+    active: dev
+# 健康检测，暴露端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+# TRACE < DEBUG < INFO < WARN < ERROR
+log:
+  path: ../log
+  level: warn
+
+server:
+  port: 9001 # 监听端口

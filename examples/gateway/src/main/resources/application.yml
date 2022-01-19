@@ -1,0 +1,35 @@
+spring:
+  main:
+    web-application-type: reactive
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  #表明gateway开启服务注册和发现的功能，并且spring cloud gateway自动根据服务发现为每一个服务创建了一个router，这个router将以服务名开头的请求路径转发到对应的服务。
+          lowerCaseServiceId: true   #是将请求路径上的服务名配置为小写
+      # 当访问 http://localhost:9006/config/v1/config/info 则会转发到 http://config/v1/config/info
+      routes:
+        - id: nacos-config
+          uri: lb://config
+          predicates:
+          - Path=/config
+          filters:
+            - StripPrefix= 1
+#        - id: system
+#          uri: lb://system
+#          predicates:
+#          - Path=/system/**
+#          filters:
+#          - StripPrefix= 1
+# 健康检测，暴露端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+# TRACE < DEBUG < INFO < WARN < ERROR
+log:
+  path: ../log
+  level: warn
