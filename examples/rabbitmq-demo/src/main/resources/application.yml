@@ -1,0 +1,45 @@
+spring:
+  profiles:  
+    active: dev
+  jackson:
+    default-property-inclusion: non_null
+  #
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    #虚拟主机
+    virtual-host: /
+    port: 5672
+    listener:
+      simple:
+        # 消费者的最小数量
+        concurrency: 10
+        # 消费者的最大数量
+        max-concurrency: 10
+        # 限制消费者每次处理多少条消息
+        prefetch: 1
+        # 启动时是否默认启动容器
+        auto-startup: true
+        # 当发送消息被拒绝时，重新进入队列
+        default-requeue-rejected: true
+    template:
+      #发送消息失败的重试策略
+      retry:
+        #是否开启重试，默认false
+        enabled: true
+        #重试的时间，默认1000ms
+        initial-interval: 1000ms
+        #重试最大的次数
+        max-attempts: 3
+        #最大的重试
+        max-interval: 10000ms
+        #重试的时间间隔，如果配置2，则第一次重试1m，第二次2ms，第三次3ms
+        multiplier: 1
+server:
+  port: 8880
+
+  
+  
+  
+  
