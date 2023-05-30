@@ -2,7 +2,7 @@ package com.fu.core.trace;
 
 
 import com.fu.core.constant.GlobalConstants;
-import com.fu.core.util.UUIDUtil;
+import com.fu.core.util.ToolUtil;
 import org.slf4j.MDC;
 
 
@@ -67,9 +67,9 @@ public class Trace {
      * @return 第一个节点
      */
     public static Trace first() {
-        String tid = UUIDUtil.getUUID();
+        String tid = ToolUtil.getUUID();
         String pid = "0";
-        String id = UUIDUtil.getUUID();
+        String id = ToolUtil.getUUID();
         return build(tid, pid, id);
 
     }
@@ -96,7 +96,7 @@ public class Trace {
     public Trace next() {
         String tid = this.tid;
         String pid = this.id;
-        String id = UUIDUtil.getUUID();
+        String id = ToolUtil.getUUID();
         return build(tid, pid, id);
     }
 

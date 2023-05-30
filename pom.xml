@@ -4,6 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!--    spring-boot-start-parent的作用-->
+    <!--    1.定义了spring boot核心依赖包的版本号-->
+    <!--    2.最关键的，通过pom将resource中的application.yml文件给依赖进来-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -15,13 +18,13 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>component</module>
-        <module>examples</module>
         <module>core</module>
-        <module>examples/logback-demo</module>
-        <module>examples/gateway</module>
+        <module>examples/rpc/feign</module>
+
     </modules>
     <packaging>pom</packaging>
     <properties>
+        <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
         <java.version>1.8</java.version>
         <!--内部基础组件的版本-->
         <com.fu.version>0.0.1-SNAPSHOT</com.fu.version>
@@ -29,6 +32,9 @@
         <curator.version>4.0.1</curator.version>
         <dubbo.version>2.7.7</dubbo.version>
         <alibaba.version>2.2.6.RELEASE</alibaba.version>
+        <knife4j-spring-ui.version>2.0.4</knife4j-spring-ui.version>
+        <springfox-swagger2.version>2.8.0</springfox-swagger2.version>
+        <shiro-spring.version>1.5.3</shiro-spring.version>
     </properties>
     <dependencies>
         <!-- 监控健康检测 -->
@@ -107,12 +113,22 @@
             </dependency>
             <dependency>
                 <groupId>com.fu</groupId>
+                <artifactId>kafka</artifactId>
+                <version>${com.fu.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fu</groupId>
                 <artifactId>rabbitmq</artifactId>
                 <version>${com.fu.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fu</groupId>
                 <artifactId>web</artifactId>
+                <version>${com.fu.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fu</groupId>
+                <artifactId>shiro</artifactId>
                 <version>${com.fu.version}</version>
             </dependency>
             <dependency>
@@ -164,7 +180,6 @@
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
                 <version>${alibaba.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
@@ -201,7 +216,25 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--swagger web接口文档-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox-swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-ui</artifactId>
+                <version>${knife4j-spring-ui.version}</version>
+            </dependency>
+            <!--            谷歌图片验证码-->
+            <dependency>
+                <groupId>com.github.penggle</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>2.3.2</version>
+            </dependency>
         </dependencies>
+
     </dependencyManagement>
     <!--    <build>-->
     <!--        <plugins>-->

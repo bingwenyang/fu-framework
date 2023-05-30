@@ -15,20 +15,19 @@ import org.springframework.context.annotation.Configuration;
 public class RedissionConfig {
 
     @Value("${spring.redis.host}")
-    private  String host;
+    private String host;
 
-    @Value("${spring.redis.password}")
-    private  String password;
+//    @Value("${spring.redis.password}")
+//    private String password;
 
     @Bean
-    public RedissonClient getRedisson(){
-
-        String h = "redis://"+host+":6379";
+    public RedissonClient getRedisson() {
+        String h = "redis://" + host + ":6379";
         RedissonClient redisson = null;
         Config config = new Config();
         config.useSingleServer()
                 .setAddress(h)
-                .setPassword(password)
+//                .setPassword(password)
                 .setConnectionMinimumIdleSize(10);
         redisson = Redisson.create(config);
 

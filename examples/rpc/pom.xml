@@ -14,5 +14,6 @@
 
     <modules>
         <module>dubbo</module>
+        <module>feign</module>
     </modules>
 </project>

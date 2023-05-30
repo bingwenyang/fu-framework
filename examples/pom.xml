@@ -20,6 +20,7 @@
         <module>seata</module>
         <module>logback-demo</module>
         <module>gateway</module>
+        <module>kafka-demo</module>
     </modules>
 
 

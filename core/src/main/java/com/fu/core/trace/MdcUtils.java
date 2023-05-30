@@ -2,7 +2,7 @@ package com.fu.core.trace;
 
 
 import com.fu.core.constant.GlobalConstants;
-import com.fu.core.util.UUIDUtil;
+import com.fu.core.util.ToolUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -23,7 +23,7 @@ public class MdcUtils {
     public static String getAndSet(String key) {
         String traceId = MDC.get(key);
         if (Objects.isNull(traceId)) {
-            traceId = UUIDUtil.getUUID();
+            traceId = ToolUtil.getUUID();
             MDC.put(key, traceId);
         }
         return traceId;
